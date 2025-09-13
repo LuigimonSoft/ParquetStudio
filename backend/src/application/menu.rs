@@ -1,3 +1,5 @@
+#![cfg_attr(tarpaulin, skip)]
+
 use tauri::menu::{Menu, MenuBuilder, MenuEvent, MenuItemBuilder, SubmenuBuilder};
 use tauri::{AppHandle, Emitter, Runtime};
 
