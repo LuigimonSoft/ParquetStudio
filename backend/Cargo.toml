@@ -56,6 +56,14 @@ name = "page_request_test"
 path = "test/models/page_request_test.rs"
 
 [[test]]
+name = "file_meta_test"
+path = "test/models/file_meta_test.rs"
+
+[[test]]
+name = "page_response_test"
+path = "test/models/page_response_test.rs"
+
+[[test]]
 name = "file_repository_test"
 path = "test/repositories/file_repository_test.rs"
 
