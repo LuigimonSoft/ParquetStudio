@@ -70,3 +70,4 @@ path = "test/repositories/file_repository_test.rs"
 [[test]]
 name = "menu_test"
 path = "test/application/menu_test.rs"
+
