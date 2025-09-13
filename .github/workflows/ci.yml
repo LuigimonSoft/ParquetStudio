@@ -35,4 +35,4 @@ jobs:
       - name: Backend coverage
         run: cargo tarpaulin --manifest-path backend/Cargo.toml --out Stdout --fail-under 90
       - name: Frontend coverage
-        run: cargo tarpaulin --manifest-path frontend/Cargo.toml --out Stdout --fail-under 90
+        run: cargo tarpaulin -p frontend --exclude-files 'backend/*' --out Stdout --fail-under 90
