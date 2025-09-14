@@ -5,8 +5,9 @@
     "version": "0.1.0"
   },
   "build": {
-    "beforeDevCommand": "cd ../frontend && trunk serve --port 8080",
-    "devPath": "http://localhost:8080",
+    "beforeDevCommand": "cd ../frontend && trunk build",
+    "beforeBuildCommand": "cd ../frontend && trunk build --release",
+    "devPath": "../frontend/dist",
     "distDir": "../frontend/dist"
   },
   "tauri": {
