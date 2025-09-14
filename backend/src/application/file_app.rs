@@ -18,3 +18,27 @@ impl<R: FileRepository> FileApp<R> {
         self.service.create_file(path, schema)
     }
 }
+
+#[cfg(feature = "tauri")]
+use crate::repositories::LocalFileRepository;
+#[cfg(feature = "tauri")]
+use tauri::State;
+
+#[cfg(feature = "tauri")]
+#[tauri::command]
+pub fn open_file(
+    path: String,
+    state: State<FileApp<LocalFileRepository>>,
+) -> Result<Vec<SchemaField>, String> {
+    state.get_schema(&path).map_err(|e| e.to_string())
+}
+
+#[cfg(feature = "tauri")]
+#[tauri::command]
+pub fn create_file(
+    path: String,
+    schema: Vec<SchemaField>,
+    state: State<FileApp<LocalFileRepository>>,
+) -> Result<(), String> {
+    state.create_file(&path, schema).map_err(|e| e.to_string())
+}

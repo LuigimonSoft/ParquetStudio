@@ -1,14 +1,20 @@
-#[cfg(feature = "cli")]
-use parquet_studio::application::{build_menu, handle_menu_event};
-#[cfg(feature = "cli")]
+#[cfg(all(feature = "cli", feature = "tauri"))]
+use parquet_studio::{
+    application::{build_menu, create_file, handle_menu_event, open_file, FileApp},
+    repositories::LocalFileRepository,
+    services::ParquetService,
+};
+#[cfg(all(feature = "cli", feature = "tauri"))]
 use tauri::Builder;
 
-#[cfg(not(feature = "cli"))]
+#[cfg(not(all(feature = "cli", feature = "tauri")))]
 fn main() {}
 
-#[cfg(feature = "cli")]
+#[cfg(all(feature = "cli", feature = "tauri"))]
 fn main() {
     Builder::default()
+        .manage(FileApp::new(ParquetService::new(LocalFileRepository)))
+        .invoke_handler(tauri::generate_handler![open_file, create_file])
         .setup(|app| {
             let menu = build_menu(&app.handle());
             app.set_menu(menu);
