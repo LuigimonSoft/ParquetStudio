@@ -43,9 +43,9 @@ pub fn highlight_sql(query: &str) -> String {
 
 #[component]
 pub fn QueryEditor(on_run: Callback<String, ()>) -> impl IntoView {
-    let (query, set_query) = create_signal(String::new());
+    let (query, set_query) = signal(String::new());
     let run = move |_| on_run.run(query.get());
-    let highlighted = create_memo(move |_| highlight_sql(&query.get()));
+    let highlighted = Memo::new(move |_| highlight_sql(&query.get()));
 
     view! {
         <div class="flex flex-col bg-gray-800 p-4 rounded-md">
