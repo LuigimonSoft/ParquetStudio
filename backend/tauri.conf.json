@@ -4,6 +4,11 @@
     "productName": "Parquet Studio",
     "version": "0.1.0"
   },
+  "build": {
+    "beforeDevCommand": "cd ../frontend && trunk serve --port 8080",
+    "devPath": "http://localhost:8080",
+    "distDir": "../frontend/dist"
+  },
   "tauri": {
     "bundle": {
       "identifier": "com.parquet.studio"
