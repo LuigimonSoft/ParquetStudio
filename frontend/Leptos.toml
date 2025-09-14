@@ -1,0 +1,10 @@
+[app]
+name = "frontend"
+bin-package = "frontend"
+bin-target = "frontend"
+site-root = "dist"
+site-pkg-dir = "pkg"
+output-name = "frontend"
+
+[serve]
+site-root = "dist"

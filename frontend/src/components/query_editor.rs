@@ -1,9 +1,9 @@
-use leptos::*;
+use leptos::prelude::*;
 
 #[component]
 pub fn QueryEditor(on_run: Callback<String, ()>) -> impl IntoView {
     let (query, set_query) = create_signal(String::new());
-    let run = move |_| on_run.call(query.get());
+    let run = move |_| on_run.run(query.get());
 
     view! {
         <div class="flex flex-col bg-gray-800 p-4 rounded-md">

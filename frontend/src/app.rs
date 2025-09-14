@@ -4,7 +4,7 @@ use crate::components::{
     query_editor::QueryEditor,
 };
 use crate::models::{File, SchemaField};
-use leptos::*;
+use leptos::prelude::*;
 
 #[component]
 pub fn App() -> impl IntoView {

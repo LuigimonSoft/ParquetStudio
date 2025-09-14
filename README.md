@@ -12,13 +12,21 @@ Parquet Studio is a cross-platform desktop application for exploring and queryin
 Format code with `cargo fmt --all` and run tests with `cargo test`.
 
 ### Running
-The Tauri configuration builds the Leptos frontend into static WASM assets before
-launching the desktop window. Start the app from the `backend` directory:
+To debug the UI independently of Tauri, start the Leptos dev server:
+
+```bash
+cd frontend
+cargo leptos watch
+```
+
+This provides hot reload for the WASM frontend.
+
+The desktop application loads prebuilt static assets. Launch it from the `backend` directory:
 
 ```bash
 cd backend
 cargo tauri dev
 ```
 
-This compiles the frontend with `trunk build`, serves the generated `index.html`
-from `frontend/dist`, and boots the Rust backend.
+During development Tauri runs `cargo leptos build` and serves the generated `index.html`
+and WASM from `frontend/dist`.

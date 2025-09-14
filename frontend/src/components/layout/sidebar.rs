@@ -1,5 +1,5 @@
 use crate::models::{File, SchemaField};
-use leptos::*;
+use leptos::prelude::*;
 
 #[component]
 pub fn Sidebar(files: Vec<File>, schema: Vec<SchemaField>) -> impl IntoView {

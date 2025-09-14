@@ -5,8 +5,8 @@
     "version": "0.1.0"
   },
   "build": {
-    "beforeDevCommand": "cd ../frontend && trunk build",
-    "beforeBuildCommand": "cd ../frontend && trunk build --release",
+    "beforeDevCommand": "cd ../frontend && cargo leptos build",
+    "beforeBuildCommand": "cd ../frontend && cargo leptos build --release",
     "devPath": "../frontend/dist",
     "distDir": "../frontend/dist"
   },
