@@ -1,9 +1,24 @@
-use crate::models::SchemaField;
+use crate::{
+    models::{File, SchemaField},
+    tauri_sys::tauri::invoke,
+};
+use serde::Serialize;
+use wasm_bindgen::JsValue;
 
-pub async fn open_file(_path: &str) {
-    // Stub for Tauri command to open file
+pub async fn open_file(path: &str) -> Result<File, JsValue> {
+    invoke("open_file", &path).await
 }
 
-pub async fn create_file(_path: &str, _schema: Vec<SchemaField>) {
-    // Stub for Tauri command to create file
+#[derive(Serialize)]
+struct CreateFileArgs<'a> {
+    path: &'a str,
+    schema: &'a [SchemaField],
+}
+
+pub async fn create_file(path: &str, schema: Vec<SchemaField>) -> Result<(), JsValue> {
+    let args = CreateFileArgs {
+        path,
+        schema: &schema,
+    };
+    invoke("create_file", &args).await
 }
