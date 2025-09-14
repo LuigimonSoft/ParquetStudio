@@ -1,11 +1,17 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "Parquet Studio",
-  "version": "0.1.0",
-  "identifier": "com.parquet.studio",
-  "app": {
+  "package": {
+    "productName": "Parquet Studio",
+    "version": "0.1.0"
+  },
+  "tauri": {
+    "bundle": {
+      "identifier": "com.parquet.studio"
+    },
     "windows": [
-      { "title": "Parquet Studio" }
+      {
+        "title": "Parquet Studio"
+      }
     ]
   }
 }
