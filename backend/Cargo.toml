@@ -16,6 +16,7 @@ mockall = "0.11"
 
 [dev-dependencies]
 tokio-test = "0.4"
+tempfile = "3"
 
 [build-dependencies]
 tauri-build = { version = "2.4.1", features = [] }
