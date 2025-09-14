@@ -1,7 +1,9 @@
+mod components_create_file_modal_test;
 mod components_data_grid_test;
 mod components_query_editor_test;
 mod components_sidebar_test;
 mod components_topbar_test;
+mod main_app_test;
 mod models_file_test;
 mod models_schema_field_test;
 mod services_file_service_test;
