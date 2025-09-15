@@ -4,3 +4,8 @@ members = [
     "frontend"
 ]
 resolver = "2"
+
+[[workspace.metadata.leptos]]
+name = "parquet-studio"
+bin-package = "backend"
+lib-package = "frontend"
