@@ -1,1 +1,32 @@
-# ParquetStudio
+# Parquet Studio
+
+Parquet Studio is a cross-platform desktop application for exploring and querying Parquet datasets. It combines a Rust backend with a Leptos/Tailwind frontend and includes an optional MCP server for exposing datasets to AI tooling. It also lets you define new Parquet files by specifying a schema and saving the file to disk.
+
+## Structure
+- `backend/` – service-repository backend written in Rust.
+- `frontend/` – Leptos/Tailwind frontend (compiled to WASM).
+- `config/` – user-specific configuration files (ignored by git).
+- Native menu bar with File, Create, and MCP sections for common actions.
+
+## Development
+Format code with `cargo fmt --all` and run tests with `cargo test`.
+
+### Running
+To debug the UI independently of Tauri, start the Leptos dev server:
+
+```bash
+cd frontend
+cargo leptos watch
+```
+
+This provides hot reload for the WASM frontend.
+
+The desktop application loads prebuilt static assets. Launch it from the `backend` directory:
+
+```bash
+cd backend
+cargo tauri dev
+```
+
+During development Tauri runs `cargo leptos build` and serves the generated `index.html`
+and WASM from `frontend/dist`.

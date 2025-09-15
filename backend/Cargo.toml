@@ -1,0 +1,74 @@
+[package]
+name = "parquet_studio"
+version = "0.1.0"
+edition = "2021"
+build = "build.rs"
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tokio = { version = "1", features = ["full"], optional = true }
+parquet = { version = "56.1.0", default-features = false }
+anyhow = "1.0"
+thiserror = "1.0"
+tauri = { package = "tauri", version = "2.8.5", features = ["test"], optional = true }
+mockall = "0.11"
+
+[dev-dependencies]
+tokio-test = "0.4"
+tempfile = "3"
+
+[build-dependencies]
+tauri-build = { version = "2.4.1", features = [] }
+
+[features]
+default = []
+tauri = ["dep:tauri"]
+cli = []
+full = ["tokio", "tauri", "cli"]
+
+[[bin]]
+name = "parquet_studio"
+path = "src/main.rs"
+required-features = ["cli"]
+
+[[test]]
+name = "parquet_service_test"
+path = "test/services/parquet_service_test.rs"
+
+[[test]]
+name = "app_config_test"
+path = "test/config/app_config_test.rs"
+
+[[test]]
+name = "file_app_test"
+path = "test/application/file_app_test.rs"
+
+[[test]]
+name = "mcp_settings_test"
+path = "test/config/mcp_settings_test.rs"
+
+[[test]]
+name = "mcp_server_test"
+path = "test/mcp_server/mcp_server_test.rs"
+
+[[test]]
+name = "page_request_test"
+path = "test/models/page_request_test.rs"
+
+[[test]]
+name = "file_meta_test"
+path = "test/models/file_meta_test.rs"
+
+[[test]]
+name = "page_response_test"
+path = "test/models/page_response_test.rs"
+
+[[test]]
+name = "file_repository_test"
+path = "test/repositories/file_repository_test.rs"
+
+[[test]]
+name = "menu_test"
+path = "test/application/menu_test.rs"
+

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "package": {
+    "productName": "Parquet Studio",
+    "version": "0.1.0"
+  },
+  "build": {
+    "beforeDevCommand": "cd ../frontend && cargo leptos build",
+    "beforeBuildCommand": "cd ../frontend && cargo leptos build --release",
+    "devPath": "../frontend/dist",
+    "distDir": "../frontend/dist"
+  },
+  "tauri": {
+    "bundle": {
+      "identifier": "com.parquet.studio"
+    },
+    "windows": [
+      {
+        "title": "Parquet Studio"
+      }
+    ]
+  }
+}
