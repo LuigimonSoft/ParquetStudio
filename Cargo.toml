@@ -7,5 +7,5 @@ resolver = "2"
 
 [[workspace.metadata.leptos]]
 name = "parquet-studio"
-bin-package = "backend"
+bin-package = "parquet_studio"
 lib-package = "frontend"
