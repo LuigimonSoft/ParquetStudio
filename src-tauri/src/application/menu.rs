@@ -5,11 +5,11 @@ use tauri::{AppHandle, Runtime};
 
 const FILE_MENU_ID: &str = "menu.file";
 const FILE_NEW_ID: &str = "menu.file.new";
-const FILE_OPEN_ID: &str = "menu.file.open";
+pub const FILE_OPEN_ID: &str = "menu.file.open";
 const FILE_SAVE_ID: &str = "menu.file.save";
 const FILE_SAVE_AS_ID: &str = "menu.file.save_as";
 const FILE_CLOSE_ID: &str = "menu.file.close";
-const FILE_QUIT_ID: &str = "menu.file.quit";
+pub const FILE_QUIT_ID: &str = "menu.file.quit";
 
 const EDIT_MENU_ID: &str = "menu.edit";
 const EDIT_UNDO_ID: &str = "menu.edit.undo";
