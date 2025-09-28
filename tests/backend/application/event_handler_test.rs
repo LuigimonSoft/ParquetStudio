@@ -1,3 +1,5 @@
+#![cfg(not(target_arch = "wasm32"))]
+
 use parquetstudio_lib::application::event_handler::{
     resolve_menu_event_action, MenuEventAction,
 };
