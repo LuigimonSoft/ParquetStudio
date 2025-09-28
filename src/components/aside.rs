@@ -7,12 +7,20 @@ use super::{files::Files, schema::Schema};
 
 const BASE_CLASS: &str = "bg-[#1E1E2F] h-full border-r border-gray-700 p-2 flex flex-col";
 
-#[component]
-pub fn Aside(#[prop(optional)] class: Option<String>) -> impl IntoView {
-    let merged_class = class
+/// Resolves the CSS classes that should be applied to the aside container.
+///
+/// This helper keeps the formatting logic isolated so that it can be covered
+/// by unit tests without the need to mount the actual Leptos component.
+pub fn resolve_aside_class(class: Option<String>) -> String {
+    class
         .filter(|value| !value.is_empty())
         .map(|value| format!("{BASE_CLASS} {value}"))
-        .unwrap_or_else(|| BASE_CLASS.to_string());
+        .unwrap_or_else(|| BASE_CLASS.to_string())
+}
+
+#[component]
+pub fn Aside(#[prop(optional)] class: Option<String>) -> impl IntoView {
+    let merged_class = resolve_aside_class(class);
 
     let aside_ref = create_node_ref::<HtmlAside>();
     let (files_ratio, set_files_ratio) = create_signal(0.55_f64);

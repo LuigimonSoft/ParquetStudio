@@ -2,11 +2,16 @@ use leptos::{prelude::*, task::spawn_local};
 use std::collections::HashMap;
 use wasm_bindgen::prelude::*;
 
-use crate::models::{FileModel, SchemaField};
+use crate::models::FileModel;
 
 use super::FileParquet;
 
 const EMPTY_STATE_TEXT: &str = "No files opened";
+
+/// Determines whether the empty state should be displayed for the files list.
+pub fn is_files_list_empty(files: &HashMap<String, FileModel>) -> bool {
+    files.is_empty()
+}
 
 #[wasm_bindgen]
 extern "C" {
@@ -32,7 +37,7 @@ pub fn Files(#[prop(optional)] files: Option<Vec<FileModel>>) -> impl IntoView {
             </button>
         </div>
         <ul class="flex-1 space-y-1 overflow-y-auto text-sm">
-            <Show when=move || !files.with(|files_map| files_map.is_empty())
+            <Show when=move || files.with(|files_map| !is_files_list_empty(files_map))
                 fallback=|| view! { <li class="text-xs text-gray-500">{EMPTY_STATE_TEXT}</li> }>
                     <For each=move || files.with(|files_map| files_map.values().cloned().collect::<Vec<_>>())
                         key=|file| file.name.clone()

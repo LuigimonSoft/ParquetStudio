@@ -9,6 +9,16 @@ use crate::models::FileModel;
 
 const BASE_CLASS: &str = "px-2 py-1 rounded cursor-pointer hover:bg-gray-700";
 
+/// Determines the CSS class that should be used for a parquet file item based
+/// on whether the file is currently selected.
+pub fn resolve_file_parquet_class(is_selected: bool) -> String {
+    if is_selected {
+        format!("{BASE_CLASS} bg-gray-700")
+    } else {
+        BASE_CLASS.to_string()
+    }
+}
+
 #[wasm_bindgen]
 extern "C" {
     #[wasm_bindgen(js_namespace = ["window", "__TAURI__", "core"])]
@@ -46,11 +56,7 @@ pub fn FileParquet(#[prop()] file: FileModel) -> impl IntoView {
                 .unwrap_or(false)
         });
 
-        if is_selected {
-            format!("{BASE_CLASS} bg-gray-700")
-        } else {
-            BASE_CLASS.to_string()
-        }
+        resolve_file_parquet_class(is_selected)
     };
 
     view! {
