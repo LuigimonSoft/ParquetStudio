@@ -1,0 +1,37 @@
+name: Build and Test
+on:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          profile: minimal
+          override: true
+      - name: Install system dependencies
+        run: |
+          echo "deb http://gb.archive.ubuntu.com/ubuntu jammy main" | sudo tee /etc/apt/sources.list.d/jammy.list
+          sudo apt update
+          sudo apt install -y libwebkit2gtk-4.0-dev \
+            build-essential \
+            curl \
+            wget \
+            file \
+            libssl-dev \
+            libgtk-3-dev \
+            libayatana-appindicator3-dev \
+            librsvg2-dev
+      - name: Build
+        run: cargo tauri build
+      - name: Test
+        run: cargo test 
+      - name: Install cargo-tarpaulin
+        run: cargo install cargo-tarpaulin
+      - name: Backend coverage
+        run: cargo tarpaulin --manifest-path src-tauri/Cargo.toml --out Stdout --fail-under 80
+      - name: Frontend coverage
+        run: cargo tarpaulin -p Cargo.toml --exclude-files 'src-tauri/*' --out Stdout --fail-under 80
