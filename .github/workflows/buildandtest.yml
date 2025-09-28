@@ -27,6 +27,8 @@ jobs:
             librsvg2-dev
       - name: Install Tauri
         run: cargo install create-tauri-app --locked
+      - name: Install Tauri CLI
+        run: cargo install tauri-cli --version "^2.0.0" --locked
       - name: Build
         run: cargo tauri build
       - name: Test
