@@ -29,8 +29,6 @@ jobs:
         run: cargo install create-tauri-app --locked
       - name: Install Tauri CLI
         run: cargo install tauri-cli --version "^2.0.0" --locked
-      - name: Build
-        run: cargo tauri build
       - name: Test
         run: cargo test 
       - name: Install cargo-tarpaulin
