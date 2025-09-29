@@ -34,7 +34,7 @@ These instructions apply to the entire repository, including the **backend (Rust
 - Format Rust code with:
   ```bash
   cargo fmt --all
-```
+  ```
 
 - Use **clear, descriptive names**.
 - Keep functions **small and focused**.
@@ -78,12 +78,12 @@ These instructions apply to the entire repository, including the **backend (Rust
 - **Development mode** (hot reload + Tauri window):
   ```bash
   cargo tauri dev
-```
+  ```
 
 - **Build production binaries** (DMG for macOS, MSI/EXE for Windows):
   ```bash
   cargo tauri build
-```
+  ```
 
 ## Configuration Files
 - `open_files.json` → stores open files, active dataset, and basic MCP settings (enabled, host, port).
@@ -106,9 +106,9 @@ All commits must follow the **Conventional Commits** specification:
   - `ci`: changes to CI configuration.
   - `chore`: other changes that don’t modify src or test files.
 - **Format**:
-```
-<type>(<scope>): <short summary>
-```
+  ```
+  <type>(<scope>): <short summary>
+  ```
 
 - Scope is optional but recommended (`frontend`, `backend`, `config`, etc.).
 - **Examples**:
