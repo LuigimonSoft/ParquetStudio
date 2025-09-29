@@ -12,6 +12,8 @@ jobs:
           toolchain: stable
           profile: minimal
           override: true
+      - name: Add wasm target
+        run: rustup target add wasm32-unknown-unknown
       - name: Install system dependencies
         run: |
           echo "deb http://gb.archive.ubuntu.com/ubuntu jammy main" | sudo tee /etc/apt/sources.list.d/jammy.list
@@ -31,8 +33,12 @@ jobs:
         run: cargo install create-tauri-app --locked
       - name: Install Tauri CLI
         run: cargo install tauri-cli --version "^2.0.0" --locked
+      - name: Install wasm-pack
+        uses: jetli/wasm-pack-action@v0.4.0
       - name: Test
         run: cargo test 
+      - name: Frontend wasm tests
+        run: CHROMEDRIVER=$(which chromedriver) wasm-pack test --headless --chrome --test frontend
       - name: Install cargo-tarpaulin
         run: cargo install cargo-tarpaulin
       - name: Backend coverage
